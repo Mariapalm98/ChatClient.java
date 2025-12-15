@@ -24,7 +24,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-        <!-- TODO: Lägg till dependencies för spring-data-jpa och mysql via Add Starters..-->
+        <!-- TODO: Lägg till dependencies för spring-data-jpa och mysql via Add Starters.. eller manuellt-->
     </dependencies>
     <build>
         <plugins>
