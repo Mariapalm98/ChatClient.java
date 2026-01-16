@@ -1,23 +1,33 @@
 package se.sprinto.hakan.chatapp.model;
 
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "users")
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, unique = true)
     private String username;
+
+    @Column(nullable = false)
     private String password;
+
+    @OneToMany(
+            mappedBy = "user",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.REMOVE
+    )
+
     private List<Message> messages = new ArrayList<>();
 
     public User() {
     }
-
-    public User(Long id, String username, String password) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-    }
-
     public User(String username, String password) {
         this.username = username;
         this.password = password;
@@ -55,4 +65,3 @@ public class User {
         this.messages = messages;
     }
 }
-

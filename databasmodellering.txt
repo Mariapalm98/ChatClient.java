@@ -1,0 +1,70 @@
+steg 1 - identifiera entiteter
+user
+massage
+kommentar
+taggar
+
+steg 2 identifiera attribut
+- user
+id
+namn
+lösenord
+profilbild
+beskrivning
+
+- message
+id
+user id
+text
+timestamp
+
+- kommentar
+id
+användar id
+meddelande id
+text
+timestamp
+
+taggar
+id
+meddelande id
+
+steg 3 identifiera relationer
+user - meddelande (1-*)
+user - kommentar (1-*)
+meddelande - kommentar (1-*)
+meddelande - taggar (-)
+
+Create table user(
+id int primary key auto_increment,
+name varcher(70) not null,
+password varcher(100) not null,
+prfilbild varcher(200) not null (url),
+beskrivning text
+);
+
+Create table message(
+id int primary key auto_increment,
+userId int not null,
+text text not null,
+timestamp created_at defult current_timestamp,
+foreign key (userId) refrences User(id)
+);
+
+Create table kommentar(
+id int primary key auto_increment,
+messageId int not null,
+userId int not null,
+text text not null,
+foreign key (messageId) references message(id),
+foreign key (userId) references user(id)
+);
+
+create table tagg(
+id int primart key autp_increment,
+messageId int not null,
+name varcher (50) not null,
+foreign key (messageid) references message(id)
+);
+
+
